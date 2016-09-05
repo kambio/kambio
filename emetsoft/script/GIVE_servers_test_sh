@@ -1,0 +1,55 @@
+
+KILL_passet_test_sh
+
+CURR=COP
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=""
+
+cd /home/jose/tmp
+rm -rf passet_test
+mkdir passet_test
+
+cd ./passet_test
+
+GAM_FF=../gamal_sys_0.dat
+
+PORT_S=5432
+PORT_1=9101
+PORT_2=9102
+
+DOM_S=localhost:$PORT_S:7000
+
+AUX_PORT_2=9302
+
+$ISSUER -k "supra" $PROTO -c -snm "nm_supra" -sid "id_supra" -scc "CO" -glid -gamal $GAM_FF
+$ISSUER -k "usu1" $PROTO -c -snm "nm_usu1" -sid "id_001" -scc "CO" -glid -gamal $GAM_FF
+$ISSUER -k "usu2" $PROTO -c -snm "nm_usu2" -sid "id_002" -scc "CO" -glid -gamal $GAM_FF
+
+GLI_S=`$ISSUER -k "supra" $PROTO -prt_glid`
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+
+echo "GS="$GLI_S
+echo "G1="$GLI_1
+echo "G2="$GLI_2
+
+$TRANSFER -k "supra" $PROTO -port "$PORT_S" -is_supra &
+$TRANSFER -k "usu1" $PROTO -port "$PORT_1" -add_supra "$DOM_S"
+$TRANSFER -k "usu2" $PROTO -port "$PORT_2" -add_supra "$DOM_S"
+
+echo "ADDED_ALL_USER_SUPRAS"
+
+$ISSUER -k usu1 $PROTO -s -n 5z3 -m $CURR 
+$ISSUER -k usu2 $PROTO -s -n 5z3 -m $CURR 
+
+$ISSUER -k usu1 $PROTO -ISSUE 1
+
+$ISSUER -k usu1 $PROTO -tat $GLI_1
+$ISSUER -k usu2 $PROTO -tat $GLI_1
+
+$TRANSFER -k "usu1" $PROTO -port "$PORT_1" &
+$TRANSFER -k "usu2" $PROTO -port "$PORT_2" &
+

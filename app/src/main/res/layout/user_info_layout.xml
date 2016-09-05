@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/user_photo"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="6"
+                android:clickable="true"
+                android:contentDescription="@string/user_photo"
+                android:gravity="left"
+                android:onClick="clicked_user_photo"
+                android:src="@drawable/person_drw" />
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/user_photo_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="bottom"
+                    android:background="@android:drawable/btn_default"
+                    android:clickable="true"
+                    android:contentDescription="@string/pick_photo"
+                    android:onClick="clicked_user_photo"
+                    android:src="@drawable/pick_drw" />
+
+                <ImageView
+                    android:id="@+id/user_take_photo_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="bottom"
+                    android:background="@android:drawable/btn_default"
+                    android:clickable="true"
+                    android:contentDescription="@string/take_a_photo"
+                    android:onClick="clicked_user_take_photo"
+                    android:src="@drawable/camera_drw" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_id_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/id_number" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/user_id_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/user_country_code_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/id_coutry_code" >
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/user_country_code_value"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:text="" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/user_country_code_button"
+                android:layout_width="0px"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default"
+                android:clickable="true"
+                android:contentDescription="@string/pick_country"
+                android:onClick="clicked_user_country_code_button"
+                android:src="@drawable/pick_drw" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_name_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/user_name_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/user_phone_nmumber_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/user_phone_number_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/user_email_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/user_email_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <ImageView
+            android:id="@+id/accept_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default"
+            android:clickable="true"
+            android:contentDescription="@string/accept"
+            android:onClick="clicked_accept_button"
+            android:src="@drawable/accept_black_drw"
+            tools:ignore="InefficientWeight" />
+    </LinearLayout>
+
+</ScrollView>
+

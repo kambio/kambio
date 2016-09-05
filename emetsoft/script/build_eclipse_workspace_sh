@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo Eclipse path: ${ECLIPSE}
+echo Eclipse workspace path: ${ECLIPSE_WORKSPACE}
+
+#java -cp startup.jar -noSplash -data "D:\Source\MyProject\workspace" -application org.eclipse.jdt.apt.core.aptBuild
+
+#stdout=$("${ECLIPSE}/eclipsec" -nosplash -application org.eclipse.jdt.apt.core.aptBuild -data #"${ECLIPSE_WORKSPACE}" 2>/dev/null)
+#echo ${stdout}
+#if [[ ${stdout} == *error* ]]
+#then
+#    exit 1
+#fi
+#exit 0 

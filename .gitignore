@@ -6,3 +6,10 @@
 .DS_Store
 /build
 /captures
+emetsoft/.gradle
+emetsoft/local.properties
+emetsoft/.idea/workspace.xml
+emetsoft/.idea/libraries
+emetsoft/build
+emetsoft/captures
+

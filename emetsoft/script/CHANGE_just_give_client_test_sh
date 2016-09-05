@@ -1,0 +1,61 @@
+
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=""
+
+cd /home/jose/tmp/passet_test
+
+DOM_1=dom01.com:9101:1000
+DOM_2=dom02.net:9102:1000
+DOM_3=dom03.gov:9103:1000
+DOM_4=dom04.org:9104:1000
+
+CLI_1=localhost:9201:1000
+CLI_2=localhost:9202:1000
+CLI_3=localhost:9203:1000
+CLI_4=localhost:9204:1000
+
+START_TM=`get_time_sh`
+
+$SELECTOR -k usu1 $PROTO +1 5z3
+$TRANSFER -k usu1 $PROTO -send -l "$CLI_1" -r "$DOM_2"
+echo ""
+echo ""
+echo ""
+echo "ONE FINISHED ONE FINISHED ONE FINISHED"
+
+$SELECTOR -k usu2 $PROTO +1 5z3
+$TRANSFER -k usu2 $PROTO -send -l "$CLI_2" -r "$DOM_3"
+echo ""
+echo ""
+echo ""
+echo "TWO FINISHED TWO FINISHED TWO FINISHED"
+
+$SELECTOR -k usu3 $PROTO +1 5z3
+$TRANSFER -k usu3 $PROTO -send -l "$CLI_3" -r "$DOM_2"
+echo ""
+echo ""
+echo ""
+echo "THREE FINISHED THREE FINISHED THREE FINISHED"
+
+$SELECTOR -k usu2 $PROTO +1 5z3
+$TRANSFER -k usu2 $PROTO -send -l "$CLI_2" -r "$DOM_3"
+echo ""
+echo ""
+echo ""
+echo "FOUR FINISHED FOUR FINISHED FOUR FINISHED"
+
+$SELECTOR -k usu3 $PROTO +1 5z3
+$TRANSFER -k usu3 $PROTO -send -l "$CLI_3" -r "$DOM_4"
+echo ""
+echo ""
+echo ""
+echo "FIVE FINISHED FIVE FINISHED FIVE FINISHED"
+
+$SELECTOR -k usu4 $PROTO 
+
+echo "TOTAL TIME="
+get_time_sh $START_TM
+

@@ -1,0 +1,5 @@
+
+FONT_DIR=/home/jose/Music/MIDIS/soundfonts
+
+sudo fluidsynth -l $FONT_DIR/acoustic_grand_piano_ydp_20080910.sf2 -a alsa "$@"
+ 

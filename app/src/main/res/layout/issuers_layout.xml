@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/trusted_issuers_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/text_param_value"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:gravity="center_vertical|left"
+            android:inputType="text"
+            android:text=""
+            tools:ignore="NestedWeights" />
+
+        <ImageView
+            android:id="@+id/set_issuer_pos_button"
+            style="@style/image_menu_item_style"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default"
+            android:clickable="true"
+            android:contentDescription="@string/set_trusted_issuer_position"
+            android:gravity="center_vertical|center_horizontal"
+            android:onClick="clicked_set_issuer_pos_button"
+            android:src="@drawable/pick_drw" />
+
+        <ImageView
+            android:id="@+id/add_issuer_button"
+            style="@style/image_menu_item_style"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default"
+            android:clickable="true"
+            android:contentDescription="@string/add_issuer"
+            android:gravity="center_vertical|center_horizontal"
+            android:onClick="clicked_add_issuer_button"
+            android:src="@drawable/more_drw" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@+id/issuers_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"
+            android:fadeScrollbars="false"
+            android:fastScrollEnabled="true" />
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/issuers_none_found_add_one"
+            android:textSize="20sp" >
+        </TextView>
+    </FrameLayout>
+
+</LinearLayout>

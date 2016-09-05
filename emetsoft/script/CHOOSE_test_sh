@@ -1,0 +1,26 @@
+
+CURR=COP
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+
+# ASSUMES that test_chomarks in TEST_passet has been runned 
+# the following must be as in test_chomarks in TEST_passet
+
+TEST_DIR=test_chomarks
+CLAVE_USU=USU_01
+
+cd /home/jose/tmp/$TEST_DIR
+
+GLI_S=`$ISSUER -k $CLAVE_USU -prt_glid`
+
+$SELECTOR -k $CLAVE_USU -tc cha1
+$SELECTOR -k $CLAVE_USU -cd cha1
+
+$ISSUER -k $CLAVE_USU -tch -tat $GLI_S
+
+$SELECTOR -k $CLAVE_USU 
+
+# $SELECTOR -k "usu1" +3 1
+# $SELECTOR -k "usu1" +2 1z
+# $SELECTOR -k "usu1" +1 5z
+

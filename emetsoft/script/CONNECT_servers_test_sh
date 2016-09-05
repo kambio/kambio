@@ -1,0 +1,33 @@
+
+KILL_passet_test_sh
+
+CURR=COP
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+
+cd /home/jose/tmp
+rm -rf passet_test
+mkdir passet_test
+
+cd ./passet_test
+
+DOM_1=dom01.com:9101:7000
+DOM_2=dom02.net:9102:7000
+
+PORT_1=9101
+PORT_2=9102
+
+$ISSUER -k "usu1" $PROTO -c -snm "nm_usu1" -sid "id_001" -scc "CO" -sdn "$DOM_1" -glid
+$ISSUER -k "usu2" $PROTO -c -snm "nm_usu2" -sid "id_002" -scc "CO" -sdn "$DOM_2" -glid
+
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+
+echo "G1="$GLI_1
+echo "G2="$GLI_2
+
+
+$TRANSFER -k "usu2" $PROTO -port "$PORT_2" &
+

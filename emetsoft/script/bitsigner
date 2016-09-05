@@ -1,0 +1,9 @@
+
+SCR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LIB_DIR=$SCR_DIR/../build/libs
+
+JAVA=$JAVA_HOME/bin/java
+
+$JAVA -ea -cp $LIB_DIR/emet_code.jar emetcode.crypto.bitshake.bitsigner $*
+
+# echo "Enter para continuar \n Gracias." | more -1

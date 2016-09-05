@@ -1,0 +1,18 @@
+
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=""
+
+cd /home/jose/tmp/passet_test
+
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+
+PORT_1=9201
+PORT_2=9202
+
+$TRANSFER -k usu1 $PROTO -port "$PORT_1" -chann -r "$GLI_2"
+
+

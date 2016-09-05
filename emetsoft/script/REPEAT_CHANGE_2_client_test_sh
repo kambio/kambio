@@ -1,0 +1,71 @@
+
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=-tcp
+
+cd /home/jose/tmp/passet_test
+
+PORT_1=9201
+PORT_2=9202
+PORT_3=9203
+PORT_4=9204
+
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+GLI_3=`$ISSUER -k "usu3" $PROTO -prt_glid`
+GLI_4=`$ISSUER -k "usu4" $PROTO -prt_glid`
+
+START_TM=`get_time_sh`
+
+$ISSUER -k usu1 $PROTO -dbg_yes_end_cho
+$ISSUER -k usu2 $PROTO -dbg_yes_end_cho
+$ISSUER -k usu3 $PROTO -dbg_yes_end_cho
+$ISSUER -k usu4 $PROTO -dbg_yes_end_cho
+
+CHO1=./cho1.nm
+CHO2=./cho2.nm
+CHO3=./cho3.nm
+CHO4=./cho4.nm
+CHO5=./cho5.nm
+CHO6=./cho6.nm
+
+CHO1_NM=`cat $CHO1`
+CHO2_NM=`cat $CHO2`
+CHO3_NM=`cat $CHO3`
+CHO4_NM=`cat $CHO4`
+CHO5_NM=`cat $CHO5`
+CHO6_NM=`cat $CHO6`
+
+$ISSUER -k usu1 $PROTO -r $GLI_2 -ck_choice_name $CHO1_NM
+$TRANSFER -k usu1 $PROTO -send -port "$PORT_1" -r "$GLI_2" -repeat $CHO1_NM
+
+$ISSUER -k usu2 $PROTO -r $GLI_3 -ck_choice_name $CHO2_NM
+$TRANSFER -k usu2 $PROTO -send -port "$PORT_2" -r "$GLI_3" -repeat $CHO2_NM
+
+$ISSUER -k usu3 $PROTO -r $GLI_4 -ck_choice_name $CHO3_NM
+$TRANSFER -k usu3 $PROTO -send -port "$PORT_3" -r "$GLI_4" -repeat $CHO3_NM
+
+$ISSUER -k usu4 $PROTO -r $GLI_1 -ck_choice_name $CHO4_NM
+$TRANSFER -k usu4 $PROTO -split -port "$PORT_4" -r "$GLI_1" -repeat $CHO4_NM
+
+$ISSUER -k usu4 $PROTO -r $GLI_3 -ck_choice_name $CHO5_NM
+$TRANSFER -k usu4 $PROTO -send -port "$PORT_4" -r "$GLI_3" -repeat $CHO5_NM
+
+$ISSUER -k usu3 $PROTO -r $GLI_1 -ck_choice_name $CHO6_NM
+$TRANSFER -k usu3 $PROTO -join -port "$PORT_3" -r "$GLI_1" -repeat $CHO6_NM
+
+
+$ISSUER -k usu1 $PROTO -r $GLI_2 -ck_choice_name $CHO1_NM
+$ISSUER -k usu2 $PROTO -r $GLI_3 -ck_choice_name $CHO2_NM
+$ISSUER -k usu3 $PROTO -r $GLI_4 -ck_choice_name $CHO3_NM
+$ISSUER -k usu4 $PROTO -r $GLI_1 -ck_choice_name $CHO4_NM
+$ISSUER -k usu4 $PROTO -r $GLI_3 -ck_choice_name $CHO5_NM
+$ISSUER -k usu3 $PROTO -r $GLI_1 -ck_choice_name $CHO6_NM
+
+$SELECTOR -k usu3 $PROTO 
+
+echo "TOTAL TIME="
+get_time_sh $START_TM
+

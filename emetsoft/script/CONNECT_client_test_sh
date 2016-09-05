@@ -1,0 +1,17 @@
+
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=""
+
+cd /home/jose/tmp/passet_test
+
+DOM_1=dom01.com:9101:7000
+DOM_2=dom02.net:9102:7000
+
+PORT_1=9201
+PORT_2=9202
+
+$TRANSFER -k usu1 $PROTO -chann -port "$PORT_1" -r "$DOM_2"
+

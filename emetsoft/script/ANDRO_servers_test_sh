@@ -1,0 +1,31 @@
+
+CURR=COP
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+
+cd /home/jose/tmp
+rm -rf passet_test
+mkdir passet_test
+
+cd ./passet_test
+
+DOM_1=dom01.com:9101
+DOM_2=dom02.net:9102
+DOM_3=dom03.gov:9103
+DOM_4=dom04.org:9104
+
+TDOM_1=dom01.com
+TDOM_2=dom02.net
+TDOM_3=dom03.gov
+TDOM_4=dom04.org
+
+$ISSUER -k "usu1" -c -snm "nm_usu1" -sid "id_001" -scc "CO" -sdn "$DOM_1"
+
+$ISSUER -k usu1 -s -n 5z3 -m $CURR 
+$ISSUER -k usu1 -ISSUE 1
+$ISSUER -k usu1 -tat $TDOM_1
+
+
+$TRANSFER -k "usu1" &
+

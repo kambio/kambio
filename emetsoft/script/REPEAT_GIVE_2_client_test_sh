@@ -1,0 +1,26 @@
+
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=""
+
+cd /home/jose/tmp/passet_test
+
+CHO1=./cho1.nm
+CHO1_NM=`cat $CHO1`
+echo "CHO1_NM="$CHO1_NM
+
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+
+PORT_1=9201
+PORT_2=9202
+
+$ISSUER -k usu1 $PROTO -dbg_yes_end_cho
+$TRANSFER -k usu1 $PROTO -send -port "$PORT_1" -r "$GLI_2" -repeat $CHO1_NM
+
+$SELECTOR -k usu1 $PROTO 
+$SELECTOR -k usu1 $PROTO -prt_cho $CHO1_NM
+$SELECTOR -k usu2 $PROTO 
+

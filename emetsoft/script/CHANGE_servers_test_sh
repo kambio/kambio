@@ -1,0 +1,78 @@
+
+KILL_passet_test_sh
+
+CURR=COP
+ISSUER=passet_issuer 
+SELECTOR=passet_choose 
+TRANSFER=passet_transfer 
+PROTO=-mudp
+# PROTO=-tcp
+
+cd /home/jose/tmp
+rm -rf passet_test
+mkdir passet_test
+
+cd ./passet_test
+
+GAM_FF=../gamal_sys_0.dat
+
+PORT_S=8765
+
+DOM_S=localhost:$PORT_S:7000
+
+PORT_1=9101
+PORT_2=9102
+PORT_3=9103
+PORT_4=9104
+
+$ISSUER -k "supr" $PROTO -c -snm "nm_supr" -sid "id_sup" -scc "CO" -glid -gamal $GAM_FF
+
+$ISSUER -k "usu1" $PROTO -c -snm "nm_usu1" -sid "id_001" -scc "CO" -glid -gamal $GAM_FF
+$ISSUER -k "usu2" $PROTO -c -snm "nm_usu2" -sid "id_002" -scc "CO" -glid -gamal $GAM_FF
+$ISSUER -k "usu3" $PROTO -c -snm "nm_usu3" -sid "id_003" -scc "CO" -glid -gamal $GAM_FF
+$ISSUER -k "usu4" $PROTO -c -snm "nm_usu4" -sid "id_004" -scc "CO" -glid -gamal $GAM_FF
+
+GLI_SUPRA=`$ISSUER -k "supra" $PROTO -prt_glid`
+
+GLI_1=`$ISSUER -k "usu1" $PROTO -prt_glid`
+GLI_2=`$ISSUER -k "usu2" $PROTO -prt_glid`
+GLI_3=`$ISSUER -k "usu3" $PROTO -prt_glid`
+GLI_4=`$ISSUER -k "usu4" $PROTO -prt_glid`
+
+echo "G_SUPRA="$GLI_SUPRA
+
+echo "G1="$GLI_1
+echo "G2="$GLI_2
+echo "G3="$GLI_3
+echo "G4="$GLI_4
+
+$TRANSFER -k "supr" $PROTO -port "$PORT_S" -is_supra &
+
+$TRANSFER -k "usu1" $PROTO -port "$PORT_1" -add_supra "$DOM_S"
+$TRANSFER -k "usu2" $PROTO -port "$PORT_2" -add_supra "$DOM_S"
+$TRANSFER -k "usu3" $PROTO -port "$PORT_3" -add_supra "$DOM_S"
+$TRANSFER -k "usu4" $PROTO -port "$PORT_4" -add_supra "$DOM_S"
+
+# ISSUER -k "usu1" $PROTO -prt_dom
+# ISSUER -k "usu2" $PROTO -prt_dom
+# ISSUER -k "usu3" $PROTO -prt_dom
+# ISSUER -k "usu4" $PROTO -prt_dom
+
+$ISSUER -k usu1 $PROTO -s -n 5z3 -m $CURR 
+$ISSUER -k usu2 $PROTO -s -n 5z3 -m $CURR 
+$ISSUER -k usu3 $PROTO -s -n 5z3 -m $CURR 
+$ISSUER -k usu4 $PROTO -s -n 5z3 -m $CURR 
+
+$ISSUER -k usu1 $PROTO -ISSUE 1
+
+$ISSUER -k usu1 $PROTO -tat $GLI_1
+$ISSUER -k usu2 $PROTO -tat $GLI_1
+$ISSUER -k usu3 $PROTO -tat $GLI_1
+$ISSUER -k usu4 $PROTO -tat $GLI_1
+
+
+$TRANSFER -k "usu1" $PROTO -port "$PORT_1" &
+$TRANSFER -k "usu2" $PROTO -port "$PORT_2" &
+$TRANSFER -k "usu3" $PROTO -port "$PORT_3" &
+$TRANSFER -k "usu4" $PROTO -port "$PORT_4" &
+

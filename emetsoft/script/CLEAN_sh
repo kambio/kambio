@@ -1,0 +1,8 @@
+
+cd /home/jose/devel/andro
+
+rm ./script/*~
+rm ./*~
+
+# echo "Enter para continuar \n Gracias." | more -1
+
