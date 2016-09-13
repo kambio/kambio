@@ -11,16 +11,18 @@ public class nx_context {
 
 	public nx_context(nx_dir_base bb) {
 		b_dir = bb;
+		//prefer_ipv4();
 	}
 	
 	public nx_context(File r_dir, int the_type) {
-		File nx_dd = new File(r_dir, config.DN_NETMIX_DIR);
-		init_nx_context(nx_dd, the_type);
+		File r_dir_2 = new File(r_dir, config.DN_NETMIX_DIR);
+		b_dir = new nx_dir_base(r_dir_2, the_type);
+		//prefer_ipv4();
 	}
 	
-	void init_nx_context(File r_dir, int the_type){
-		b_dir = new nx_dir_base(r_dir, the_type);
-	}
+	//void prefer_ipv4(){
+	//	System.setProperty("java.net.preferIPv4Stack" , "true");
+	//}
 
 	public int get_net_type() {
 		if(b_dir == null){

@@ -55,23 +55,24 @@ public class mudp_manager {
 
 	public mudp_manager(int port) {
 		sok_addr = new InetSocketAddress(port);
-		init_connection_manager(sok_addr);
+		init_connection_manager();
 	}
 
 	public mudp_manager(InetAddress addr, int port) {
 		sok_addr = new InetSocketAddress(addr, port);
-		init_connection_manager(sok_addr);
+		init_connection_manager();
 	}
 
 	public mudp_manager(InetSocketAddress addr) {
 		sok_addr = addr;
-		init_connection_manager(sok_addr);
+		init_connection_manager();
 	}
 
-	private void init_connection_manager(InetSocketAddress addr) {
+	private void init_connection_manager() {
 		sok = null;
 		try {
-			sok = new DatagramSocket(sok_addr);
+			sok = new DatagramSocket(sok_addr.getPort());
+			//sok = new DatagramSocket(sok_addr);
 		} catch (SocketException ex) {
 			throw new bad_udp(2, ex.toString());
 		}

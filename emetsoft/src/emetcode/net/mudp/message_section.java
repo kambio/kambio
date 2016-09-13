@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -15,9 +16,10 @@ import emetcode.crypto.bitshake.utils.mer_twist;
 import emetcode.util.devel.logger;
 
 public class message_section {
-	public static boolean IN_DEBUG_1 = false;
+	public static boolean IN_DEBUG_1 = false; // send_section, receive_section
 	static final boolean IN_DEBUG_2 = false;
 	static final boolean IN_DEBUG_3 = true;
+	static final boolean IN_DEBUG_4 = true; // dsok info
 
 	static final byte DAT_KIND = 66;
 	static final byte ACK_KIND = 77;
@@ -273,10 +275,37 @@ public class message_section {
 		}
 		sec_num_times_sent.incrementAndGet();
 		DatagramPacket pak = as_datagram();
+		
+		String err_msg = "NO_ERR";
+		if(IN_DEBUG_4){
+			InetAddress destaddr = pak.getAddress();
+			
+                        err_msg += "during udp send_section";
+                        err_msg += "\nto ip_addr=" + msg_dest.sok_addr.toString();
+                        err_msg += "\nPAK=" + pak.toString();
+                        err_msg += "\ndsok=" + dsok.toString();
+			err_msg += "\ndsok.getLocalAddress='" + dsok.getLocalAddress() + "'";
+			err_msg += "\ndsok.getLocalPort='" + dsok.getLocalPort() + "'";
+			err_msg += "\ndsok.getInetAddress='" + dsok.getInetAddress() + "'";
+			err_msg += "\ndsok.getPort='" + dsok.getPort() + "'";
+			err_msg += "\ndsok.isBound='" + dsok.isBound() + "'";
+			err_msg += "\ndsok.isClosed='" + dsok.isClosed() + "'";
+			err_msg += "\ndsok.isConnected='" + dsok.isConnected() + "'";
+			err_msg += "\ndestaddr='" + destaddr + "'";
+			err_msg += "\ndestaddr.isLoopbackAddress='" + destaddr.isLoopbackAddress() + "'";
+			err_msg += "\ndestaddr.isMulticastAddress='" + destaddr.isMulticastAddress() + "'";
+			
+			//logger.info(err_msg);
+		}
+		
 		try {
 			dsok.send(pak);
-		} catch (IOException ex) {
-			logger.error(ex, "during udp send_section");
+		//} catch (IOException ex) {
+		} catch (Exception ex) {
+			
+                        err_msg += "\nclass=" + ex.getClass().toString();
+                        
+			logger.error(ex, err_msg);
 			// throw new bad_udp(2);
 		}
 	}

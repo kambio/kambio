@@ -22,7 +22,7 @@ public class nx_supra_locator {
 
 	static boolean IN_DEBUG_1 = false;
 	static boolean IN_DEBUG_2 = false;
-	static boolean IN_DEBUG_3 = false; // set_supra_locator, supra_locate
+	static boolean IN_DEBUG_3 = true; // set_supra_locator, supra_locate
 	static boolean IN_DEBUG_4 = false; // send/recv files
 	static boolean IN_DEBUG_5 = true; // no coid in send files
 	static boolean IN_DEBUG_6 = true; // start errors
