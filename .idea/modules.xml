@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/emetsoft/emetsoft.iml" filepath="$PROJECT_DIR$/emetsoft/emetsoft.iml" />
+      <module fileurl="file://$USER_HOME$/devel/emetcode/emetcode.iml" filepath="$USER_HOME$/devel/emetcode/emetcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/kambio.iml" filepath="$PROJECT_DIR$/kambio.iml" />
     </modules>
   </component>

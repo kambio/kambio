@@ -1,9 +1,0 @@
-
-SCR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PS_CLASS_PATH=$SCR_DIR/../build/libs/emet_code.jar
-
-JAVA=$JAVA_HOME/bin/java
-
-$JAVA -ea -cp $PS_CLASS_PATH emetcode.economics.netpasser.TEST_netpasser $*
-
-# echo "Enter para continuar \n Gracias." | more -1

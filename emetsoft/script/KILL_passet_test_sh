@@ -1,4 +1,0 @@
-
-cd /home/jose/tmp/passet_test
-
-passet_transfer -kill_all

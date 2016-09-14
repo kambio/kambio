@@ -1,6 +1,0 @@
-cd /home/jose/tmp
-rm -rf err_*
-rm -rf passet_test
-rm -rf test_*
-rm -rf mudp
-
